@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-01T21:41:59.014Z",
+  "clockfaces": [
+    {
+      "id": "DisplayText",
+      "name": "Display Text",
+      "description": "Centered bitmap text with configurable foreground and background colors.",
+      "module": "./build/DisplayText/DisplayText.mjs",
+      "picture": "./build/DisplayText/picture.png",
+      "source": "./src/DisplayText/manifest.json"
+    }
+  ]
+}

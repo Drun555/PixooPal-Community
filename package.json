@@ -1,0 +1,19 @@
+{
+  "name": "pixoopal-community",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-clockfaces.mjs",
+    "check": "tsc -p tsconfig.json --noEmit && npm run build",
+    "validate": "node scripts/build-clockfaces.mjs --validate-only"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@pixoopal/clockface": "^0.1.0"
+  }
+}
