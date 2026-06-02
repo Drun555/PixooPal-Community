@@ -1,8 +1,11 @@
 import { cp, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { execFile } from 'node:child_process';
 import { basename, extname, join, normalize, relative, resolve } from 'node:path';
+import { promisify } from 'node:util';
 import { build } from 'esbuild';
 
+const execFileAsync = promisify(execFile);
 const validateOnly = process.argv.includes('--validate-only');
 const root = process.cwd();
 const sourceDir = join(root, 'src');
@@ -59,6 +62,7 @@ for (const folderName of entries) {
     name: normalizeOptionalString(manifest.name) ?? id,
     description: normalizeOptionalString(manifest.description),
     author: normalizeOptionalString(manifest.author),
+    ...(await getClockfaceGitDates(folder)),
     sourceFolder: folder,
     sourceManifestPath,
     entryPath,
@@ -132,6 +136,8 @@ async function writeRootManifest(nextClockfaces) {
       name: clockface.name,
       ...(clockface.description ? { description: clockface.description } : {}),
       ...(clockface.author ? { author: clockface.author } : {}),
+      ...(clockface.createdAt ? { createdAt: clockface.createdAt } : {}),
+      ...(clockface.updatedAt ? { updatedAt: clockface.updatedAt } : {}),
       module: `./build/${clockface.id}/${clockface.moduleName}`,
       picture: `./build/${clockface.id}/${clockface.pictureName}`,
       source: `./src/${basename(clockface.sourceFolder)}/manifest.json`
@@ -175,4 +181,35 @@ function normalizeRelativePath(value, field, manifestFile) {
 
 function normalizeOptionalString(value) {
   return typeof value === 'string' && value.trim() ? value.trim() : undefined;
+}
+
+async function getClockfaceGitDates(folder) {
+  const gitPath = normalize(relative(root, folder)).replaceAll('\\', '/');
+  const [createdAt, updatedAt] = await Promise.all([
+    getGitLogDate(['log', '--format=%aI', '--reverse', '--', gitPath], 'first'),
+    getGitLogDate(['log', '--format=%aI', '-1', '--', gitPath], 'first')
+  ]);
+
+  return {
+    ...(createdAt ? { createdAt } : {}),
+    ...(updatedAt ? { updatedAt } : {})
+  };
+}
+
+async function getGitLogDate(args, mode) {
+  try {
+    const { stdout } = await execFileAsync('git', args, { cwd: root });
+    const lines = stdout
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter(Boolean);
+
+    if (mode === 'first') {
+      return lines[0];
+    }
+
+    return lines.at(-1);
+  } catch {
+    return undefined;
+  }
 }
