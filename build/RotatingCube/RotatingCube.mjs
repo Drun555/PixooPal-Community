@@ -52,6 +52,7 @@ var EDGES = [
 var angle = 0;
 var RotatingCube_default = defineClockface({
   resolution: RESOLUTION,
+  frameQueueSize: 10,
   data: {
     cubeColor: data.color(DEFAULT_DATA.cubeColor),
     borderColor: data.color(DEFAULT_DATA.borderColor)

@@ -60,6 +60,7 @@ var PALETTES = [
   }
 ];
 var TimeGradient_default = defineClockface({
+  frameQueueSize: 1,
   resolution: RESOLUTION,
   interval: 1e3,
   render: renderClock
