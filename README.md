@@ -9,7 +9,7 @@ This repository serves as a registry for third-party Clockfaces.
 
 ...
 
-99. If you want to publish your clockface, just make an Pull Request. [Make sure to follow PR rules](https://github.com/Drun555/PixooPal-Community/tree/master#folder-structure).
+99. If you want to publish your clockface, just make an Pull Request. [Make sure to follow PR rules](https://github.com/Drun555/PixooPal-Community#pull-request-rules).
 
 ## Clockface Structure
 
