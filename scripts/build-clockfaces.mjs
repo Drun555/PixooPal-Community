@@ -79,6 +79,13 @@ for (const clockface of clockfaces) {
     outfile: validateOnly ? undefined : clockface.outputModulePath,
     bundle: true,
     format: 'esm',
+    loader: {
+      '.gif': 'dataurl',
+      '.jpeg': 'dataurl',
+      '.jpg': 'dataurl',
+      '.png': 'dataurl',
+      '.webp': 'dataurl'
+    },
     platform: 'node',
     target: 'node22',
     packages: 'external',

@@ -1,0 +1,6 @@
+{
+  "entry": "./Example.ts",
+  "name": "Example",
+  "description": "A commented starter Clockface for PixooPal Community.",
+  "picture": "./picture.png"
+}
