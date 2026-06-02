@@ -36,6 +36,7 @@ let gameOverFrames = 0;
 
 export default defineClockface({
   resolution: RESOLUTION,
+  frameQueueSize: 1,
   data: {
     score: data.number(0)
   },

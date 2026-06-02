@@ -71,6 +71,7 @@ const PALETTES: TimePalette[] = [
 ];
 
 export default defineClockface({
+  frameQueueSize: 1,
   resolution: RESOLUTION,
   interval: 1000,
   render: renderClock

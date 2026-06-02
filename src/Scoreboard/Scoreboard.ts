@@ -28,6 +28,7 @@ const DIGITS: Record<string, string[]> = {
 
 export default defineClockface({
   resolution: RESOLUTION,
+  frameQueueSize: 1,
   data: {
     blueScore: data.number(Number(DEFAULT_DATA.blueScore)),
     redScore: data.number(Number(DEFAULT_DATA.redScore))
