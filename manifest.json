@@ -1,12 +1,14 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-02T18:26:53.712Z",
+  "generatedAt": "2026-06-02T18:33:47.334Z",
   "clockfaces": [
     {
       "id": "Example",
       "name": "Example",
       "description": "A commented starter Clockface for PixooPal Community.",
       "author": "Drun555",
+      "createdAt": "2026-06-02T22:33:27+04:00",
+      "updatedAt": "2026-06-02T22:33:27+04:00",
       "module": "./build/Example/Example.mjs",
       "picture": "./build/Example/picture.png",
       "source": "./src/Example/manifest.json"
@@ -16,6 +18,8 @@
       "name": "Rotating Cube",
       "description": "A rotating pseudo-3D cube with configurable face and border colors.",
       "author": "Drun555",
+      "createdAt": "2026-06-02T22:33:27+04:00",
+      "updatedAt": "2026-06-02T22:33:27+04:00",
       "module": "./build/RotatingCube/RotatingCube.mjs",
       "picture": "./build/RotatingCube/picture.png",
       "source": "./src/RotatingCube/manifest.json"
@@ -25,6 +29,8 @@
       "name": "Scoreboard",
       "description": "A simple two-team scoreboard with increment and reset controls.",
       "author": "Drun555",
+      "createdAt": "2026-06-02T22:33:27+04:00",
+      "updatedAt": "2026-06-02T22:33:27+04:00",
       "module": "./build/Scoreboard/Scoreboard.mjs",
       "picture": "./build/Scoreboard/picture.png",
       "source": "./src/Scoreboard/manifest.json"
@@ -34,6 +40,8 @@
       "name": "Snake",
       "description": "A playable snake game controlled from the PixooPal UI.",
       "author": "Drun555",
+      "createdAt": "2026-06-02T22:33:27+04:00",
+      "updatedAt": "2026-06-02T22:33:27+04:00",
       "module": "./build/Snake/Snake.mjs",
       "picture": "./build/Snake/picture.png",
       "source": "./src/Snake/manifest.json"
@@ -43,6 +51,8 @@
       "name": "Snowfall",
       "description": "A calm animated snowfall scene with configurable flake count.",
       "author": "Drun555",
+      "createdAt": "2026-06-02T22:33:27+04:00",
+      "updatedAt": "2026-06-02T22:33:27+04:00",
       "module": "./build/Snowfall/Snowfall.mjs",
       "picture": "./build/Snowfall/picture.png",
       "source": "./src/Snowfall/manifest.json"
@@ -52,6 +62,8 @@
       "name": "Time Gradient",
       "description": "A colorful clock rendered over a shifting gradient background.",
       "author": "Drun555",
+      "createdAt": "2026-06-02T22:33:27+04:00",
+      "updatedAt": "2026-06-02T22:33:27+04:00",
       "module": "./build/TimeGradient/TimeGradient.mjs",
       "picture": "./build/TimeGradient/picture.png",
       "source": "./src/TimeGradient/manifest.json"
