@@ -25,6 +25,7 @@ var pendingDirection = "right";
 var gameOverFrames = 0;
 var Snake_default = defineClockface({
   resolution: RESOLUTION,
+  frameQueueSize: 1,
   data: {
     score: data.number(0)
   },

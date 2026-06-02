@@ -14,6 +14,9 @@ var uploadedMediaType = "image";
 var Example_default = defineClockface({
   // 16, 32 or 64 - it's the resolution of your clockface. Please note that lower resolution means better FPS.
   resolution: 64,
+  // It's a number of queued frames renderer will cache before sending. It saves us from CPU spikes, but it's important to know that any input will clear the queue. 
+  // It should be equal to 1 in interactive clockfaces where state matters (like Snake game), because it will mess with your clockface state. 
+  frameQueueSize: 1,
   // data is something persistent across clockface restarts. Good thing to have.
   data: {
     message: data.string("HELLO"),
