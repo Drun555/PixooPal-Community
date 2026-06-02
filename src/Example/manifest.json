@@ -2,5 +2,6 @@
   "entry": "./Example.ts",
   "name": "Example",
   "description": "A commented starter Clockface for PixooPal Community.",
-  "picture": "./picture.png"
+  "picture": "./picture.png",
+  "author": "Drun555"
 }

@@ -1,2 +1,12 @@
-node_modules
+# Contributor PRs should contain only Clockface folders under /src.
+*
+
+!.gitignore
+!src/
+!src/**
+
+# Local noise.
+
+src/Example*
+node_modules/
 npm-debug.log*

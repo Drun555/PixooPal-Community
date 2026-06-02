@@ -9,7 +9,11 @@ This repository serves as a registry for third-party Clockfaces.
 
 ...
 
-99. If you want to publish your clockface, just make an Pull Request. [Make sure to follow PR rules](https://github.com/Drun555/PixooPal-Community#pull-request-rules).
+99. If you want to publish your clockface, just make a Pull Request. [Make sure to follow PR rules](https://github.com/Drun555/PixooPal-Community#pull-request-rules).
+
+## But I don't know how to code!
+
+You know, this thing is AI friendly. You can just send a link to this repository to your favorite AI tool (like Codex) and ask it to create any clockface you want. Trust me, they are good at this.
 
 ## Clockface Structure
 

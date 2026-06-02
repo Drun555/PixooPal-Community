@@ -58,6 +58,7 @@ for (const folderName of entries) {
     id,
     name: normalizeOptionalString(manifest.name) ?? id,
     description: normalizeOptionalString(manifest.description),
+    author: normalizeOptionalString(manifest.author),
     sourceFolder: folder,
     sourceManifestPath,
     entryPath,
@@ -130,6 +131,7 @@ async function writeRootManifest(nextClockfaces) {
       id: clockface.id,
       name: clockface.name,
       ...(clockface.description ? { description: clockface.description } : {}),
+      ...(clockface.author ? { author: clockface.author } : {}),
       module: `./build/${clockface.id}/${clockface.moduleName}`,
       picture: `./build/${clockface.id}/${clockface.pictureName}`,
       source: `./src/${basename(clockface.sourceFolder)}/manifest.json`
