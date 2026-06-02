@@ -1,9 +1,9 @@
 name: Clockfaces
 
 on:
-  pull_request:
   push:
     branches:
+      - master
       - main
 
 jobs:
@@ -29,22 +29,12 @@ jobs:
       - name: Check
         run: npm run check
 
-      - name: Upload build artifact
-        if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: pixoopal-community-build
-          path: |
-            build
-            manifest.json
-
       - name: Commit generated registry
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           if [ -n "$(git status --porcelain build manifest.json)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add build manifest.json
+            git add -f build manifest.json
             git commit -m "Build community clockfaces"
             git push
           fi
