@@ -9,7 +9,8 @@ var RESOLUTION = 32;
 var UPDATE_INTERVAL_MS = 100;
 var DEFAULT_DATA = {
   cubeColor: "#6ee7d8",
-  borderColor: "#ecfcff"
+  borderColor: "#ecfcff",
+  displayResolution: "64"
 };
 var BACKGROUND_TOP = [4, 8, 16];
 var BACKGROUND_BOTTOM = [1, 2, 5];
@@ -51,13 +52,25 @@ var EDGES = [
 ];
 var angle = 0;
 var RotatingCube_default = defineClockface({
-  resolution: RESOLUTION,
+  resolution: (context) => getDisplayResolution(context.data.displayResolution),
   frameQueueSize: 10,
   data: {
     cubeColor: data.color(DEFAULT_DATA.cubeColor),
-    borderColor: data.color(DEFAULT_DATA.borderColor)
+    borderColor: data.color(DEFAULT_DATA.borderColor),
+    displayResolution: data.select(DEFAULT_DATA.displayResolution)
   },
   inputs: [
+    input.select(
+      "displayResolution",
+      "Resolution",
+      [
+        { value: "32", label: "32x32" },
+        { value: "64", label: "64x64" }
+      ],
+      {
+        isSetting: true
+      }
+    ),
     input.color("cubeColor", "Cube color", {
       onSubmit: (value, context) => {
         context.data.cubeColor = String(value);
@@ -82,7 +95,7 @@ function renderCube(context) {
   const cubeColor = parseHexColor(context.data.cubeColor, DEFAULT_DATA.cubeColor);
   const borderColor = parseHexColor(context.data.borderColor, DEFAULT_DATA.borderColor);
   const rotated = VERTICES.map((vertex) => rotateVertex(scaleVertex(vertex, CUBE_SCALE), angle));
-  const projected = rotated.map(projectVertex);
+  const projected = rotated.map((vertex) => projectVertex(vertex, context.resolution));
   const faces = FACES.map((face) => createFace(face, rotated, projected, cubeColor)).sort(
     (left, right) => left.depth - right.depth
   );
@@ -117,11 +130,12 @@ function drawBackground(context) {
   }
 }
 function drawShadow(context, points) {
+  const scale = context.resolution / RESOLUTION;
   const centerX = points.reduce((sum, point) => sum + point.screenX, 0) / points.length;
   const lowestY = Math.max(...points.map((point) => point.screenY));
-  const radiusX = 17;
-  const radiusY = 5;
-  const shadowY = Math.min(context.resolution - 7, lowestY + 6);
+  const radiusX = 17 * scale;
+  const radiusY = 5 * scale;
+  const shadowY = Math.min(context.resolution - 7 * scale, lowestY + 6 * scale);
   for (let y = Math.floor(shadowY - radiusY); y <= Math.ceil(shadowY + radiusY); y += 1) {
     for (let x = Math.floor(centerX - radiusX); x <= Math.ceil(centerX + radiusX); x += 1) {
       const dx = (x - centerX) / radiusX;
@@ -171,13 +185,13 @@ function drawLine(context, start, end, color2, opacity) {
     blendPixel(context, x, y, color2, opacity);
   }
 }
-function projectVertex(vertex) {
+function projectVertex(vertex, resolution) {
   const depth = CAMERA_DISTANCE - vertex.z;
-  const scale = PERSPECTIVE / depth;
+  const scale = PERSPECTIVE * resolution / RESOLUTION / depth;
   return {
     ...vertex,
-    screenX: RESOLUTION / 2 + vertex.x * scale,
-    screenY: RESOLUTION / 2 + vertex.y * scale
+    screenX: resolution / 2 + vertex.x * scale,
+    screenY: resolution / 2 + vertex.y * scale
   };
 }
 function rotateVertex(vertex, rotation) {
@@ -313,6 +327,9 @@ function parseHexColor(value, fallback) {
 }
 function clampColor(value) {
   return Math.max(0, Math.min(255, Math.round(value)));
+}
+function getDisplayResolution(value) {
+  return value === "32" ? 32 : 64;
 }
 export {
   RotatingCube_default as default
