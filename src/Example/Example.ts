@@ -15,7 +15,7 @@ export default defineClockface({
   resolution: 64,
 
   // It's a number of queued frames renderer will cache before sending. It saves us from CPU spikes, but it's important to know that any input will clear the queue. 
-  // It should be equal to 1 in interactive clockfaces where state matters (like Snake game), because it will mess with your clockface state. 
+  // It should be equal to 0 in interactive clockfaces where state matters (like Snake game), because queue clearing will mess with it. 
   frameQueueSize: 1,
 
   // data is something persistent across clockface restarts. Good thing to have.
