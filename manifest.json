@@ -1,72 +1,102 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-02T18:33:47.334Z",
+  "generatedAt": "2026-06-03T22:21:01.853Z",
   "clockfaces": [
     {
       "id": "Example",
       "name": "Example",
-      "description": "A commented starter Clockface for PixooPal Community.",
+      "description": "A good starting point for developers. See it's code right here: https://github.com/Drun555/PixooPal-Community/tree/master/src/Example",
       "author": "Drun555",
-      "createdAt": "2026-06-02T22:33:27+04:00",
-      "updatedAt": "2026-06-02T22:33:27+04:00",
+      "createdAt": "2026-06-02T14:29:27+04:00",
+      "updatedAt": "2026-06-02T22:26:30+04:00",
       "module": "./build/Example/Example.mjs",
       "picture": "./build/Example/picture.png",
-      "source": "./src/Example/manifest.json"
+      "source": "./src/Example/manifest.json",
+      "sourceFiles": [
+        "./src/Example/Example.ts",
+        "./src/Example/manifest.json",
+        "./src/Example/picture.png"
+      ]
     },
     {
       "id": "RotatingCube",
       "name": "Rotating Cube",
       "description": "A rotating pseudo-3D cube with configurable face and border colors.",
       "author": "Drun555",
-      "createdAt": "2026-06-02T22:33:27+04:00",
-      "updatedAt": "2026-06-02T22:33:27+04:00",
+      "createdAt": "2026-06-02T17:49:13+04:00",
+      "updatedAt": "2026-06-02T22:26:30+04:00",
       "module": "./build/RotatingCube/RotatingCube.mjs",
       "picture": "./build/RotatingCube/picture.png",
-      "source": "./src/RotatingCube/manifest.json"
+      "source": "./src/RotatingCube/manifest.json",
+      "sourceFiles": [
+        "./src/RotatingCube/manifest.json",
+        "./src/RotatingCube/picture.png",
+        "./src/RotatingCube/RotatingCube.ts"
+      ]
     },
     {
       "id": "Scoreboard",
       "name": "Scoreboard",
       "description": "A simple two-team scoreboard with increment and reset controls.",
       "author": "Drun555",
-      "createdAt": "2026-06-02T22:33:27+04:00",
-      "updatedAt": "2026-06-02T22:33:27+04:00",
+      "createdAt": "2026-06-02T17:49:13+04:00",
+      "updatedAt": "2026-06-02T22:26:30+04:00",
       "module": "./build/Scoreboard/Scoreboard.mjs",
       "picture": "./build/Scoreboard/picture.png",
-      "source": "./src/Scoreboard/manifest.json"
+      "source": "./src/Scoreboard/manifest.json",
+      "sourceFiles": [
+        "./src/Scoreboard/manifest.json",
+        "./src/Scoreboard/picture.png",
+        "./src/Scoreboard/Scoreboard.ts"
+      ]
     },
     {
       "id": "Snake",
       "name": "Snake",
       "description": "A playable snake game controlled from the PixooPal UI.",
       "author": "Drun555",
-      "createdAt": "2026-06-02T22:33:27+04:00",
-      "updatedAt": "2026-06-02T22:33:27+04:00",
+      "createdAt": "2026-06-02T17:49:13+04:00",
+      "updatedAt": "2026-06-02T22:26:30+04:00",
       "module": "./build/Snake/Snake.mjs",
       "picture": "./build/Snake/picture.png",
-      "source": "./src/Snake/manifest.json"
+      "source": "./src/Snake/manifest.json",
+      "sourceFiles": [
+        "./src/Snake/manifest.json",
+        "./src/Snake/picture.png",
+        "./src/Snake/Snake.ts"
+      ]
     },
     {
       "id": "Snowfall",
       "name": "Snowfall",
       "description": "A calm animated snowfall scene with configurable flake count.",
       "author": "Drun555",
-      "createdAt": "2026-06-02T22:33:27+04:00",
-      "updatedAt": "2026-06-02T22:33:27+04:00",
+      "createdAt": "2026-06-02T17:49:13+04:00",
+      "updatedAt": "2026-06-02T22:26:30+04:00",
       "module": "./build/Snowfall/Snowfall.mjs",
       "picture": "./build/Snowfall/picture.png",
-      "source": "./src/Snowfall/manifest.json"
+      "source": "./src/Snowfall/manifest.json",
+      "sourceFiles": [
+        "./src/Snowfall/manifest.json",
+        "./src/Snowfall/picture.png",
+        "./src/Snowfall/Snowfall.ts"
+      ]
     },
     {
       "id": "TimeGradient",
       "name": "Time Gradient",
-      "description": "A colorful clock rendered over a shifting gradient background.",
+      "description": "A colorful clock rendered over a gradient background changing over time.",
       "author": "Drun555",
-      "createdAt": "2026-06-02T22:33:27+04:00",
-      "updatedAt": "2026-06-02T22:33:27+04:00",
+      "createdAt": "2026-06-02T17:49:13+04:00",
+      "updatedAt": "2026-06-02T22:26:30+04:00",
       "module": "./build/TimeGradient/TimeGradient.mjs",
       "picture": "./build/TimeGradient/picture.png",
-      "source": "./src/TimeGradient/manifest.json"
+      "source": "./src/TimeGradient/manifest.json",
+      "sourceFiles": [
+        "./src/TimeGradient/manifest.json",
+        "./src/TimeGradient/picture.png",
+        "./src/TimeGradient/TimeGradient.ts"
+      ]
     }
   ]
 }

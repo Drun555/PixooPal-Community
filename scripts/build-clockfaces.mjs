@@ -63,6 +63,7 @@ for (const folderName of entries) {
     description: normalizeOptionalString(manifest.description),
     author: normalizeOptionalString(manifest.author),
     ...(await getClockfaceGitDates(folder)),
+    sourceFiles: await listClockfaceSourceFiles(folder),
     sourceFolder: folder,
     sourceManifestPath,
     entryPath,
@@ -140,7 +141,8 @@ async function writeRootManifest(nextClockfaces) {
       ...(clockface.updatedAt ? { updatedAt: clockface.updatedAt } : {}),
       module: `./build/${clockface.id}/${clockface.moduleName}`,
       picture: `./build/${clockface.id}/${clockface.pictureName}`,
-      source: `./src/${basename(clockface.sourceFolder)}/manifest.json`
+      source: `./src/${basename(clockface.sourceFolder)}/manifest.json`,
+      sourceFiles: clockface.sourceFiles
     }))
   };
 
@@ -181,6 +183,39 @@ function normalizeRelativePath(value, field, manifestFile) {
 
 function normalizeOptionalString(value) {
   return typeof value === 'string' && value.trim() ? value.trim() : undefined;
+}
+
+async function listClockfaceSourceFiles(folder) {
+  const files = [];
+  await collectClockfaceSourceFiles(folder, folder, files);
+  return files.sort((left, right) => left.localeCompare(right));
+}
+
+async function collectClockfaceSourceFiles(rootFolder, folder, files) {
+  const entries = (await readdir(folder, { withFileTypes: true })).sort((left, right) =>
+    left.name.localeCompare(right.name)
+  );
+
+  for (const entry of entries) {
+    const path = join(folder, entry.name);
+
+    if (entry.isDirectory()) {
+      await collectClockfaceSourceFiles(rootFolder, path, files);
+      continue;
+    }
+
+    if (!entry.isFile()) {
+      continue;
+    }
+
+    const relativePath = normalize(relative(root, path)).replaceAll('\\', '/');
+
+    if (!relativePath.startsWith(`src/${basename(rootFolder)}/`)) {
+      throw new Error(`${path} is outside of its clockface folder.`);
+    }
+
+    files.push(`./${relativePath}`);
+  }
 }
 
 async function getClockfaceGitDates(folder) {

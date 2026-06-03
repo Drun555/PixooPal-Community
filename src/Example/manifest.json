@@ -1,7 +1,7 @@
 {
   "entry": "./Example.ts",
   "name": "Example",
-  "description": "A commented starter Clockface for PixooPal Community.",
+  "description": "A good starting point for developers. See it's code right here: https://github.com/Drun555/PixooPal-Community/tree/master/src/Example",
   "picture": "./picture.png",
   "author": "Drun555"
 }
