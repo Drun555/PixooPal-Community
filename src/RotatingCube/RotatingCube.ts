@@ -11,7 +11,8 @@ const RESOLUTION = 32;
 const UPDATE_INTERVAL_MS = 100;
 const DEFAULT_DATA = {
   cubeColor: '#6ee7d8',
-  borderColor: '#ecfcff'
+  borderColor: '#ecfcff',
+  displayResolution: '64'
 };
 const BACKGROUND_TOP: ClockfacePixel = [4, 8, 16];
 const BACKGROUND_BOTTOM: ClockfacePixel = [1, 2, 5];
@@ -75,13 +76,25 @@ const EDGES = [
 let angle = 0;
 
 export default defineClockface({
-  resolution: RESOLUTION,
+  resolution: (context) => getDisplayResolution(context.data.displayResolution),
   frameQueueSize: 10,
   data: {
     cubeColor: data.color(DEFAULT_DATA.cubeColor),
-    borderColor: data.color(DEFAULT_DATA.borderColor)
+    borderColor: data.color(DEFAULT_DATA.borderColor),
+    displayResolution: data.select(DEFAULT_DATA.displayResolution)
   },
   inputs: [
+    input.select(
+      'displayResolution',
+      'Resolution',
+      [
+        { value: '32', label: '32x32' },
+        { value: '64', label: '64x64' }
+      ],
+      {
+        isSetting: true
+      }
+    ),
     input.color('cubeColor', 'Cube color', {
       onSubmit: (value, context) => {
         context.data.cubeColor = String(value);
@@ -107,7 +120,7 @@ function renderCube(context: ClockfaceContext) {
   const cubeColor = parseHexColor(context.data.cubeColor, DEFAULT_DATA.cubeColor);
   const borderColor = parseHexColor(context.data.borderColor, DEFAULT_DATA.borderColor);
   const rotated = VERTICES.map((vertex) => rotateVertex(scaleVertex(vertex, CUBE_SCALE), angle));
-  const projected = rotated.map(projectVertex);
+  const projected = rotated.map((vertex) => projectVertex(vertex, context.resolution));
   const faces = FACES.map((face) => createFace(face, rotated, projected, cubeColor)).sort(
     (left, right) => left.depth - right.depth
   );
@@ -155,11 +168,12 @@ function drawBackground(context: ClockfaceContext) {
 }
 
 function drawShadow(context: ClockfaceContext, points: ProjectedPoint[]) {
+  const scale = context.resolution / RESOLUTION;
   const centerX = points.reduce((sum, point) => sum + point.screenX, 0) / points.length;
   const lowestY = Math.max(...points.map((point) => point.screenY));
-  const radiusX = 17;
-  const radiusY = 5;
-  const shadowY = Math.min(context.resolution - 7, lowestY + 6);
+  const radiusX = 17 * scale;
+  const radiusY = 5 * scale;
+  const shadowY = Math.min(context.resolution - 7 * scale, lowestY + 6 * scale);
 
   for (let y = Math.floor(shadowY - radiusY); y <= Math.ceil(shadowY + radiusY); y += 1) {
     for (let x = Math.floor(centerX - radiusX); x <= Math.ceil(centerX + radiusX); x += 1) {
@@ -225,14 +239,14 @@ function drawLine(
   }
 }
 
-function projectVertex(vertex: Vec3): ProjectedPoint {
+function projectVertex(vertex: Vec3, resolution: number): ProjectedPoint {
   const depth = CAMERA_DISTANCE - vertex.z;
-  const scale = PERSPECTIVE / depth;
+  const scale = (PERSPECTIVE * resolution) / RESOLUTION / depth;
 
   return {
     ...vertex,
-    screenX: RESOLUTION / 2 + vertex.x * scale,
-    screenY: RESOLUTION / 2 + vertex.y * scale
+    screenX: resolution / 2 + vertex.x * scale,
+    screenY: resolution / 2 + vertex.y * scale
   };
 }
 
@@ -405,4 +419,8 @@ function parseHexColor(value: string | undefined, fallback: string): ClockfacePi
 
 function clampColor(value: number) {
   return Math.max(0, Math.min(255, Math.round(value)));
+}
+
+function getDisplayResolution(value: string | undefined) {
+  return value === '32' ? 32 : 64;
 }
