@@ -111,9 +111,12 @@ export default defineClockface({
       height: 18
     });
 
-    // You can always work straight with a pixel buffer if provided methods are not enough for you.
-    for (let index = 4; index < context.canvas.buffer.length; index += 13) {
-      context.canvas.buffer[index] = [255, 255, 255];
+    // You can always work straight with a flat RGB pixel buffer if provided methods are not enough for you.
+    for (let pixelIndex = 4; pixelIndex < context.resolution * context.resolution; pixelIndex += 13) {
+      const offset = pixelIndex * 3;
+      context.canvas.buffer[offset] = 255;
+      context.canvas.buffer[offset + 1] = 255;
+      context.canvas.buffer[offset + 2] = 255;
     }
   },
   interval: 120

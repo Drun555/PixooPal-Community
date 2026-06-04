@@ -141,7 +141,8 @@ function drawCell(context, point, color) {
 }
 function drawGameOverFlash(context) {
   const color = [92, 18, 28];
-  for (let index = 0; index < context.buffer.length; index += 1) {
+  const pixelCount = context.resolution * context.resolution;
+  for (let index = 0; index < pixelCount; index += 1) {
     if (index % 5 === 0) {
       context.canvas.pixel(index % context.resolution, Math.floor(index / context.resolution), color);
     }

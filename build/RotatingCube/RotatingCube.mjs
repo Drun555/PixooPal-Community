@@ -312,8 +312,7 @@ function blendPixel(context, x, y, color2, opacity) {
   if (x < 0 || y < 0 || x >= context.resolution || y >= context.resolution) {
     return;
   }
-  const current = context.canvas.buffer[x + y * context.resolution];
-  context.canvas.pixel(x, y, mixPixel(current, color2, opacity));
+  context.canvas.blendPixel(x, y, color2, opacity);
 }
 function setPixel(context, x, y, color2) {
   context.canvas.pixel(x, y, color2);

@@ -205,8 +205,7 @@ function blendPixel(
     return;
   }
 
-  const current = context.canvas.buffer[x + y * context.resolution];
-  context.canvas.pixel(x, y, mixPixel(current, color, opacity));
+  context.canvas.blendPixel(x, y, color, opacity);
 }
 
 function setPixel(context: ClockfaceContext, x: number, y: number, color: ClockfacePixel) {

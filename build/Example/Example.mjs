@@ -91,8 +91,11 @@ var Example_default = defineClockface({
       width: 18,
       height: 18
     });
-    for (let index = 4; index < context.canvas.buffer.length; index += 13) {
-      context.canvas.buffer[index] = [255, 255, 255];
+    for (let pixelIndex = 4; pixelIndex < context.resolution * context.resolution; pixelIndex += 13) {
+      const offset = pixelIndex * 3;
+      context.canvas.buffer[offset] = 255;
+      context.canvas.buffer[offset + 1] = 255;
+      context.canvas.buffer[offset + 2] = 255;
     }
   },
   interval: 120
