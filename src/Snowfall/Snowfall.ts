@@ -25,7 +25,7 @@ let snowflakes: Snowflake[] = [];
 let frame = 0;
 
 export default defineClockface({
-  frameQueueSize: 0,
+  frameQueueSize: 10,
   resolution: RESOLUTION,
   data: {
     snowflakeCount: data.number(DEFAULT_SNOWFLAKE_COUNT)
