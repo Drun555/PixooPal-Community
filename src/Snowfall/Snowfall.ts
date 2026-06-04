@@ -41,7 +41,7 @@ export default defineClockface({
       }
     })
   ],
-  interval: 50,
+  interval: 200,
   setup: (context) => {
     syncSnowflakes(context);
   },
