@@ -15,6 +15,6 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@pixoopal/clockface": "^0.1.6"
+    "@pixoopal/clockface": "^0.1.7"
   }
 }
