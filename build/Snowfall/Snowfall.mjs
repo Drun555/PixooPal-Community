@@ -11,7 +11,7 @@ var MAX_SNOWFLAKE_COUNT = 180;
 var snowflakes = [];
 var frame = 0;
 var Snowfall_default = defineClockface({
-  frameQueueSize: 0,
+  frameQueueSize: 10,
   resolution: RESOLUTION,
   data: {
     snowflakeCount: data.number(DEFAULT_SNOWFLAKE_COUNT)
