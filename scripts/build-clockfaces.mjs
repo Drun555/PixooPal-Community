@@ -36,6 +36,7 @@ for (const folderName of entries) {
   const id = normalizeClockfaceId(manifest.id ?? folderName);
   const entry = normalizeRelativePath(manifest.entry, 'entry', sourceManifestPath);
   const picture = normalizeRelativePath(manifest.picture ?? './picture.png', 'picture', sourceManifestPath);
+  const tags = normalizeTags(manifest.tags, sourceManifestPath);
   const entryPath = join(folder, entry);
   const picturePath = join(folder, picture);
 
@@ -66,6 +67,7 @@ for (const folderName of entries) {
     sourceFiles: await listClockfaceSourceFiles(folder),
     sourceFolder: folder,
     sourceManifestPath,
+    tags,
     entryPath,
     picturePath,
     outputDir,
@@ -184,6 +186,28 @@ function normalizeRelativePath(value, field, manifestFile) {
 
 function normalizeOptionalString(value) {
   return typeof value === 'string' && value.trim() ? value.trim() : undefined;
+}
+
+function normalizeTags(value, manifestFile) {
+  if (value === undefined) {
+    return [];
+  }
+
+  if (!Array.isArray(value)) {
+    throw new Error(`${manifestFile} has invalid tags: expected an array of strings.`);
+  }
+
+  const tags = value
+    .map((tag) => {
+      if (typeof tag !== 'string') {
+        throw new Error(`${manifestFile} has invalid tags: each tag must be a string.`);
+      }
+
+      return tag.trim();
+    })
+    .filter(Boolean);
+
+  return [...new Set(tags)];
 }
 
 async function listClockfaceSourceFiles(folder) {
