@@ -139,6 +139,7 @@ async function writeRootManifest(nextClockfaces) {
       ...(clockface.author ? { author: clockface.author } : {}),
       ...(clockface.createdAt ? { createdAt: clockface.createdAt } : {}),
       ...(clockface.updatedAt ? { updatedAt: clockface.updatedAt } : {}),
+      tags: clockface.tags ?? [],
       module: `./build/${clockface.id}/${clockface.moduleName}`,
       picture: `./build/${clockface.id}/${clockface.pictureName}`,
       source: `./src/${basename(clockface.sourceFolder)}/manifest.json`,

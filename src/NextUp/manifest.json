@@ -1,0 +1,10 @@
+{
+  "entry": "./NextUp.ts",
+  "name": "Next Up",
+  "description": "Shows next event from Home Assistant calendar.",
+  "author": "Drun555",
+  "picture": "./picture.png",
+  "tags": [
+    "Home Assistant"
+  ]
+}

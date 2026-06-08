@@ -1,0 +1,10 @@
+{
+  "entry": "./ToDoList.ts",
+  "name": "ToDo List",
+  "description": "Shows incomplete items from a Home Assistant to-do entity.",
+  "author": "Drun555",
+  "picture": "./picture.png",
+  "tags": [
+    "Home Assistant"
+  ]
+}

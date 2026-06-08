@@ -1,0 +1,10 @@
+{
+  "entry": "./NowPlaying.ts",
+  "name": "Now Playing",
+  "description": "Shows the Home Assistant media player information.",
+  "author": "Drun555",
+  "picture": "./picture.png",
+  "tags": [
+    "Home Assistant"
+  ]
+}
