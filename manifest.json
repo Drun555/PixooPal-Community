@@ -1,14 +1,15 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-04T17:18:08.183Z",
+  "generatedAt": "2026-06-08T13:49:01.116Z",
   "clockfaces": [
     {
       "id": "Example",
       "name": "Example",
       "description": "A good starting point for developers. See it's code right here: https://github.com/Drun555/PixooPal-Community/tree/master/src/Example",
       "author": "Drun555",
-      "createdAt": "2026-06-04T21:17:51+04:00",
-      "updatedAt": "2026-06-04T21:17:51+04:00",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
       "module": "./build/Example/Example.mjs",
       "picture": "./build/Example/picture.png",
       "source": "./src/Example/manifest.json",
@@ -19,12 +20,47 @@
       ]
     },
     {
+      "id": "NextUp",
+      "name": "Next Up",
+      "description": "Shows next event from Home Assistant calendar.",
+      "author": "Drun555",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
+      "module": "./build/NextUp/NextUp.mjs",
+      "picture": "./build/NextUp/picture.png",
+      "source": "./src/NextUp/manifest.json",
+      "sourceFiles": [
+        "./src/NextUp/manifest.json",
+        "./src/NextUp/NextUp.ts",
+        "./src/NextUp/picture.png"
+      ]
+    },
+    {
+      "id": "NowPlaying",
+      "name": "Now Playing",
+      "description": "Shows the Home Assistant media player information.",
+      "author": "Drun555",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
+      "module": "./build/NowPlaying/NowPlaying.mjs",
+      "picture": "./build/NowPlaying/picture.png",
+      "source": "./src/NowPlaying/manifest.json",
+      "sourceFiles": [
+        "./src/NowPlaying/manifest.json",
+        "./src/NowPlaying/NowPlaying.ts",
+        "./src/NowPlaying/picture.png"
+      ]
+    },
+    {
       "id": "RotatingCube",
       "name": "Rotating Cube",
       "description": "A rotating pseudo-3D cube with configurable face and border colors.",
       "author": "Drun555",
-      "createdAt": "2026-06-04T21:17:51+04:00",
-      "updatedAt": "2026-06-04T21:17:51+04:00",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
       "module": "./build/RotatingCube/RotatingCube.mjs",
       "picture": "./build/RotatingCube/picture.png",
       "source": "./src/RotatingCube/manifest.json",
@@ -39,8 +75,9 @@
       "name": "Scoreboard",
       "description": "A simple two-team scoreboard with increment and reset controls.",
       "author": "Drun555",
-      "createdAt": "2026-06-04T21:17:51+04:00",
-      "updatedAt": "2026-06-04T21:17:51+04:00",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
       "module": "./build/Scoreboard/Scoreboard.mjs",
       "picture": "./build/Scoreboard/picture.png",
       "source": "./src/Scoreboard/manifest.json",
@@ -55,8 +92,9 @@
       "name": "Snake",
       "description": "A playable snake game controlled from the PixooPal UI.",
       "author": "Drun555",
-      "createdAt": "2026-06-04T21:17:51+04:00",
-      "updatedAt": "2026-06-04T21:17:51+04:00",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
       "module": "./build/Snake/Snake.mjs",
       "picture": "./build/Snake/picture.png",
       "source": "./src/Snake/manifest.json",
@@ -71,8 +109,9 @@
       "name": "Snowfall",
       "description": "A calm animated snowfall scene with configurable flake count.",
       "author": "Drun555",
-      "createdAt": "2026-06-04T21:17:51+04:00",
-      "updatedAt": "2026-06-04T21:17:51+04:00",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
       "module": "./build/Snowfall/Snowfall.mjs",
       "picture": "./build/Snowfall/picture.png",
       "source": "./src/Snowfall/manifest.json",
@@ -87,8 +126,9 @@
       "name": "Time Gradient",
       "description": "A colorful clock rendered over a gradient background changing over time.",
       "author": "Drun555",
-      "createdAt": "2026-06-04T21:17:51+04:00",
-      "updatedAt": "2026-06-04T21:17:51+04:00",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
       "module": "./build/TimeGradient/TimeGradient.mjs",
       "picture": "./build/TimeGradient/picture.png",
       "source": "./src/TimeGradient/manifest.json",
@@ -96,6 +136,23 @@
         "./src/TimeGradient/manifest.json",
         "./src/TimeGradient/picture.png",
         "./src/TimeGradient/TimeGradient.ts"
+      ]
+    },
+    {
+      "id": "ToDoList",
+      "name": "ToDo List",
+      "description": "Shows incomplete items from a Home Assistant to-do entity.",
+      "author": "Drun555",
+      "createdAt": "2026-06-08T17:48:35+04:00",
+      "updatedAt": "2026-06-08T17:48:35+04:00",
+      "tags": [],
+      "module": "./build/ToDoList/ToDoList.mjs",
+      "picture": "./build/ToDoList/picture.png",
+      "source": "./src/ToDoList/manifest.json",
+      "sourceFiles": [
+        "./src/ToDoList/manifest.json",
+        "./src/ToDoList/picture.png",
+        "./src/ToDoList/ToDoList.ts"
       ]
     }
   ]
