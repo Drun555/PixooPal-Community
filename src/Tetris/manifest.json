@@ -1,0 +1,7 @@
+{
+  "entry": "./Tetris.ts",
+  "name": "Tetris",
+  "description": "A tiny playable Tetris clockface with optional autoplay.",
+  "author": "Drun555",
+  "picture": "./picture.png"
+}
