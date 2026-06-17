@@ -15,8 +15,6 @@ const SNAKE_HEAD: ClockfacePixel = [143, 244, 190];
 const SNAKE_BODY: ClockfacePixel = [59, 204, 142];
 const SNAKE_TAIL: ClockfacePixel = [35, 128, 103];
 const FOOD_COLOR: ClockfacePixel = [255, 76, 101];
-const FOOD_GLOW: ClockfacePixel = [255, 170, 84];
-const EAT_SPARK: ClockfacePixel = [255, 245, 156];
 
 const AUTOPLAY_OPTIONS = [
   { value: 'no', label: 'No' },
@@ -43,8 +41,6 @@ let direction: Direction = 'right';
 let pendingDirection: Direction = 'right';
 let gameOverFrames = 0;
 let frame = 0;
-let eatSparkFrames = 0;
-let lastFood: Point | null = null;
 
 export default defineClockface({
   resolution: RESOLUTION,
@@ -114,8 +110,6 @@ function resetGame(context: ClockfaceContext) {
   pendingDirection = 'right';
   gameOverFrames = 0;
   frame = 0;
-  eatSparkFrames = 0;
-  lastFood = null;
   context.data.score = '0';
   food = createFood();
   renderSnake(context);
@@ -165,15 +159,9 @@ function stepGame(context: ClockfaceContext) {
 
   if (eatsFood) {
     context.data.score = String(Number.parseInt(context.data.score || '0', 10) + 1);
-    lastFood = food;
-    eatSparkFrames = 4;
     food = createFood();
   } else {
     snake.pop();
-  }
-
-  if (eatSparkFrames > 0) {
-    eatSparkFrames -= 1;
   }
 }
 
@@ -184,8 +172,6 @@ function renderSnake(context: ClockfaceContext) {
   snake.forEach((point, index) => {
     drawCell(context, point, getSnakeColor(index));
   });
-
-  drawEatSpark(context);
 
   if (gameOverFrames > 0) {
     drawGameOverFlash(context);
@@ -216,45 +202,7 @@ function drawCell(context: ClockfaceContext, point: Point, color: ClockfacePixel
 }
 
 function drawFood(context: ClockfaceContext) {
-  const pulse = frame % 6 < 3;
-  drawCell(context, food, pulse ? FOOD_GLOW : FOOD_COLOR);
-
-  if (pulse) {
-    drawPixelIfEmpty(context, wrapPoint({ x: food.x - 1, y: food.y }), FOOD_COLOR);
-    drawPixelIfEmpty(context, wrapPoint({ x: food.x + 1, y: food.y }), FOOD_COLOR);
-    drawPixelIfEmpty(context, wrapPoint({ x: food.x, y: food.y - 1 }), FOOD_COLOR);
-    drawPixelIfEmpty(context, wrapPoint({ x: food.x, y: food.y + 1 }), FOOD_COLOR);
-  }
-}
-
-function drawEatSpark(context: ClockfaceContext) {
-  if (!lastFood || eatSparkFrames <= 0) {
-    return;
-  }
-
-  const points = [
-    lastFood,
-    wrapPoint({ x: lastFood.x - 1, y: lastFood.y }),
-    wrapPoint({ x: lastFood.x + 1, y: lastFood.y }),
-    wrapPoint({ x: lastFood.x, y: lastFood.y - 1 }),
-    wrapPoint({ x: lastFood.x, y: lastFood.y + 1 })
-  ];
-
-  points.forEach((point, index) => {
-    if (index === 0 || (frame + index) % 2 === 0) {
-      drawCell(context, point, EAT_SPARK);
-    }
-  });
-}
-
-function drawPixelIfEmpty(context: ClockfaceContext, point: Point, color: ClockfacePixel) {
-  if (snake.some((part) => part.x === point.x && part.y === point.y)) {
-    return;
-  }
-
-  const x = point.x * CELL_SIZE;
-  const y = point.y * CELL_SIZE;
-  context.canvas.pixel(x, y, color);
+  drawCell(context, food, FOOD_COLOR);
 }
 
 function getSnakeColor(index: number): ClockfacePixel {
