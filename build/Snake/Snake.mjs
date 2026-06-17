@@ -46,7 +46,8 @@ var Snake_default = defineClockface({
         onSubmit: (value, context) => {
           context.data.autoplay = String(value) === "yes" ? "yes" : "no";
           renderSnake(context);
-        }
+        },
+        isSetting: true
       })
     ],
     [
