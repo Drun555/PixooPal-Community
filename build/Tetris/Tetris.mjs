@@ -1,6 +1,6 @@
 // src/Tetris/Tetris.ts
 import { color, data, defineClockface, input } from "@pixoopal/clockface";
-var RESOLUTION = normalizeResolution(Number.parseInt(process.env.RESOLUTION ?? "") ?? 16);
+var RESOLUTION = normalizeResolution(16);
 var CELL_SIZE = Math.max(1, Math.floor(RESOLUTION / 16));
 var BOARD_WIDTH = Math.floor(RESOLUTION / CELL_SIZE);
 var BOARD_HEIGHT = Math.floor(RESOLUTION / CELL_SIZE);
@@ -8,7 +8,7 @@ var BOARD_PIXEL_WIDTH = BOARD_WIDTH * CELL_SIZE;
 var BOARD_PIXEL_HEIGHT = BOARD_HEIGHT * CELL_SIZE;
 var BOARD_LEFT = Math.floor((RESOLUTION - BOARD_PIXEL_WIDTH) / 2);
 var BOARD_TOP = Math.floor((RESOLUTION - BOARD_PIXEL_HEIGHT) / 2);
-var TICK_MS = 130;
+var TICK_MS = 50;
 var LOCK_DELAY_FRAMES = 2;
 var AUTOPLAY_OPTIONS = [
   { value: "no", label: "No" },

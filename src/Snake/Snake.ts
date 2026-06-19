@@ -6,8 +6,8 @@ import {
   type ClockfacePixel
 } from '@pixoopal/clockface';
 
-const RESOLUTION = 32;
-const CELL_SIZE = 2;
+const RESOLUTION = 16;
+const CELL_SIZE = 1;
 const GRID_SIZE = RESOLUTION / CELL_SIZE;
 const UPDATE_INTERVAL_MS = 150;
 const BACKGROUND: ClockfacePixel = [0, 0, 0];

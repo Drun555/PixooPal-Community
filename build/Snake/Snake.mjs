@@ -4,8 +4,8 @@ import {
   data,
   input
 } from "@pixoopal/clockface";
-var RESOLUTION = 32;
-var CELL_SIZE = 2;
+var RESOLUTION = 16;
+var CELL_SIZE = 1;
 var GRID_SIZE = RESOLUTION / CELL_SIZE;
 var UPDATE_INTERVAL_MS = 150;
 var BACKGROUND = [0, 0, 0];
@@ -13,8 +13,6 @@ var SNAKE_HEAD = [143, 244, 190];
 var SNAKE_BODY = [59, 204, 142];
 var SNAKE_TAIL = [35, 128, 103];
 var FOOD_COLOR = [255, 76, 101];
-var FOOD_GLOW = [255, 170, 84];
-var EAT_SPARK = [255, 245, 156];
 var AUTOPLAY_OPTIONS = [
   { value: "no", label: "No" },
   { value: "yes", label: "Yes" }
@@ -31,8 +29,6 @@ var direction = "right";
 var pendingDirection = "right";
 var gameOverFrames = 0;
 var frame = 0;
-var eatSparkFrames = 0;
-var lastFood = null;
 var Snake_default = defineClockface({
   resolution: RESOLUTION,
   frameQueueSize: 0,
@@ -100,8 +96,6 @@ function resetGame(context) {
   pendingDirection = "right";
   gameOverFrames = 0;
   frame = 0;
-  eatSparkFrames = 0;
-  lastFood = null;
   context.data.score = "0";
   food = createFood();
   renderSnake(context);
@@ -139,14 +133,9 @@ function stepGame(context) {
   snake = [nextHead, ...snake];
   if (eatsFood) {
     context.data.score = String(Number.parseInt(context.data.score || "0", 10) + 1);
-    lastFood = food;
-    eatSparkFrames = 4;
     food = createFood();
   } else {
     snake.pop();
-  }
-  if (eatSparkFrames > 0) {
-    eatSparkFrames -= 1;
   }
 }
 function renderSnake(context) {
@@ -155,7 +144,6 @@ function renderSnake(context) {
   snake.forEach((point, index) => {
     drawCell(context, point, getSnakeColor(index));
   });
-  drawEatSpark(context);
   if (gameOverFrames > 0) {
     drawGameOverFlash(context);
   }
@@ -180,39 +168,7 @@ function drawCell(context, point, color) {
   }
 }
 function drawFood(context) {
-  const pulse = frame % 6 < 3;
-  drawCell(context, food, pulse ? FOOD_GLOW : FOOD_COLOR);
-  if (pulse) {
-    drawPixelIfEmpty(context, wrapPoint({ x: food.x - 1, y: food.y }), FOOD_COLOR);
-    drawPixelIfEmpty(context, wrapPoint({ x: food.x + 1, y: food.y }), FOOD_COLOR);
-    drawPixelIfEmpty(context, wrapPoint({ x: food.x, y: food.y - 1 }), FOOD_COLOR);
-    drawPixelIfEmpty(context, wrapPoint({ x: food.x, y: food.y + 1 }), FOOD_COLOR);
-  }
-}
-function drawEatSpark(context) {
-  if (!lastFood || eatSparkFrames <= 0) {
-    return;
-  }
-  const points = [
-    lastFood,
-    wrapPoint({ x: lastFood.x - 1, y: lastFood.y }),
-    wrapPoint({ x: lastFood.x + 1, y: lastFood.y }),
-    wrapPoint({ x: lastFood.x, y: lastFood.y - 1 }),
-    wrapPoint({ x: lastFood.x, y: lastFood.y + 1 })
-  ];
-  points.forEach((point, index) => {
-    if (index === 0 || (frame + index) % 2 === 0) {
-      drawCell(context, point, EAT_SPARK);
-    }
-  });
-}
-function drawPixelIfEmpty(context, point, color) {
-  if (snake.some((part) => part.x === point.x && part.y === point.y)) {
-    return;
-  }
-  const x = point.x * CELL_SIZE;
-  const y = point.y * CELL_SIZE;
-  context.canvas.pixel(x, y, color);
+  drawCell(context, food, FOOD_COLOR);
 }
 function getSnakeColor(index) {
   if (index === 0) {

@@ -88,6 +88,7 @@ for (const clockface of clockfaces) {
     bundle: true,
     format: 'esm',
     loader: {
+      '.fnt': 'text',
       '.gif': 'dataurl',
       '.jpeg': 'dataurl',
       '.jpg': 'dataurl',

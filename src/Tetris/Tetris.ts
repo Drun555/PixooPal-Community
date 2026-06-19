@@ -1,6 +1,6 @@
 import { color, data, defineClockface, input, type ClockfaceContext, type ClockfacePixel } from '@pixoopal/clockface';
 
-const RESOLUTION = normalizeResolution(Number.parseInt(process.env.RESOLUTION ?? '') ?? 16);
+const RESOLUTION = normalizeResolution(16);
 const CELL_SIZE = Math.max(1, Math.floor(RESOLUTION / 16));
 const BOARD_WIDTH = Math.floor(RESOLUTION / CELL_SIZE);
 const BOARD_HEIGHT = Math.floor(RESOLUTION / CELL_SIZE);
@@ -8,7 +8,7 @@ const BOARD_PIXEL_WIDTH = BOARD_WIDTH * CELL_SIZE;
 const BOARD_PIXEL_HEIGHT = BOARD_HEIGHT * CELL_SIZE;
 const BOARD_LEFT = Math.floor((RESOLUTION - BOARD_PIXEL_WIDTH) / 2);
 const BOARD_TOP = Math.floor((RESOLUTION - BOARD_PIXEL_HEIGHT) / 2);
-const TICK_MS = 130;
+const TICK_MS = 50;
 const LOCK_DELAY_FRAMES = 2;
 const AUTOPLAY_OPTIONS = [
   { value: 'no', label: 'No' },
